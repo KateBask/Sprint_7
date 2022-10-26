@@ -12,7 +12,7 @@ public class OrderRequest {
     private String rentTime;
     private String deliveryDate;
     private String comment;
-    List<String> color = new ArrayList<>();
+    private List<String> color = new ArrayList<>();
     public String getFirstName() {
         return firstName;
     }

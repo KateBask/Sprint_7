@@ -21,7 +21,7 @@ public class CourierCreatedTest {
     }
     @Test
     @DisplayName("Создание курьера")
-    public void CourierShouldBeCreated() {
+    public void courierShouldBeCreated() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -38,7 +38,7 @@ public class CourierCreatedTest {
     }
     @Test
     @DisplayName("Нельзя создать двух равных курьеров")
-    public void CouriersEqualShouldNotBeCreated() {
+    public void couriersEqualShouldNotBeCreated() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -64,9 +64,7 @@ public class CourierCreatedTest {
     @After
     public void tearDown() {
         if (id != null) {
-            courierClient.delete(id)
-                    .assertThat()
-                    .body("ok", equalTo(true));
+            courierClient.delete(id);
         }
     }
 }

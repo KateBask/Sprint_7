@@ -21,7 +21,7 @@ public class CourierLoginTest {
     }
     @Test
     @DisplayName("Курьер с валидными данными должен авторизоваться")
-    public void CourierWithValidDataShouldAuthorize() {
+    public void courierWithValidDataShouldAuthorize() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -38,10 +38,9 @@ public class CourierLoginTest {
                 .extract()
                 .path("id");
     }
-    //этот тест падает, так как возвращается 504 ошибка, вместо заявленной в документации 400
     @Test
     @DisplayName("Курьер с неверным паролем не должен авторизоваться")
-    public void CourierWithWrongPasswordShouldNotAuthorize() {
+    public void courierWithWrongPasswordShouldNotAuthorize() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -59,7 +58,7 @@ public class CourierLoginTest {
     }
     @Test
     @DisplayName("Курьер с неверным логином не должен авторизоваться")
-    public void CourierWithWrongLoginShouldNotAuthorize() {
+    public void courierWithWrongLoginShouldNotAuthorize() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -77,7 +76,7 @@ public class CourierLoginTest {
     }
     @Test
     @DisplayName("Курьер без логина не должен авторизоваться")
-    public void CourierWithoutLoginShouldNotAuthorize() {
+    public void courierWithoutLoginShouldNotAuthorize() {
         CourierRequest randomCourierRequest = getRandomCourierRequest();
         courierClient.create(randomCourierRequest)
                 .assertThat()
@@ -93,13 +92,7 @@ public class CourierLoginTest {
     }
     @Test
     @DisplayName("Курьер без регистрации не должен авторизоваться")
-    public void CourierWithoutRegShouldNotBeAuth() {
-        CourierRequest randomCourierRequest = getRandomCourierRequest();
-        courierClient.create(randomCourierRequest)
-                .assertThat()
-                .statusCode(SC_CREATED)
-                .and()
-                .body("ok", equalTo(true));
+    public void courierWithoutRegShouldNotBeAuth() {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setLogin(RandomStringUtils.randomAlphabetic(8));
         loginRequest.setPassword(RandomStringUtils.randomAlphabetic(8));
@@ -111,9 +104,7 @@ public class CourierLoginTest {
     @After
     public void tearDown() {
         if (id != null) {
-            courierClient.delete(id)
-                    .assertThat()
-                    .body("ok", equalTo(true));
+            courierClient.delete(id);
         }
     }
 }

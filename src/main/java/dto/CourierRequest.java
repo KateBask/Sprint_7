@@ -1,6 +1,9 @@
 package dto;
 
 public class CourierRequest {
+    private String login;
+    private String password;
+    private String firstName;
     public String getLogin() {
         return login;
     }
@@ -19,9 +22,7 @@ public class CourierRequest {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    private String login;
-    private String password;
-    private String firstName;
+
 
 
 }
